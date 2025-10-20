@@ -36,13 +36,75 @@ fn rhoo_rho_from_Ma<'py>(
 }
 
 #[pyfunction]
-fn A_Acrit_from_Ma<'py>(
+fn V_cpTo_from_Ma<'py>(
     py: Python<'py>,
     Ma: PyReadonlyArrayDyn<f64>,
     ga: f64,
 ) -> Bound<'py, PyArrayDyn<f64>> {
     Ma.as_array()
-        .map(|&m| 1. / mach_to_a_ac(m, ga))
+        .map(|&m| mach_to_v_cpt0(m, ga))
+        .into_pyarray(py)
+}
+
+#[pyfunction]
+fn mcpTo_APo_from_Ma<'py>(
+    py: Python<'py>,
+    Ma: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    Ma.as_array()
+        .map(|&m| mach_to_mcpt0_ap0(m, ga))
+        .into_pyarray(py)
+}
+
+#[pyfunction]
+fn mcpTo_AP_from_Ma<'py>(
+    py: Python<'py>,
+    Ma: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    Ma.as_array()
+        .map(|&m| mach_to_mcpt0_ap(m, ga))
+        .into_pyarray(py)
+}
+
+#[pyfunction]
+fn F_mcpTo_from_Ma<'py>(
+    py: Python<'py>,
+    Ma: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    Ma.as_array()
+        .map(|&m| mach_to_f_mcpt(m, ga))
+        .into_pyarray(py)
+}
+
+#[pyfunction]
+fn A_Acrit_from_Ma<'py>(
+    py: Python<'py>,
+    Ma: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    Ma.as_array().map(|&m| mach_to_a_ac(m, ga)).into_pyarray(py)
+}
+
+#[pyfunction]
+fn Mash_from_Ma<'py>(
+    py: Python<'py>,
+    Ma: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    Ma.as_array().map(|&m| normal_mach2(m, ga)).into_pyarray(py)
+}
+
+#[pyfunction]
+fn Posh_Po_from_Ma<'py>(
+    py: Python<'py>,
+    Ma: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    Ma.as_array()
+        .map(|&m| normal_p02_p01(m, ga))
         .into_pyarray(py)
 }
 
@@ -103,7 +165,12 @@ fn compflow2(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(To_T_from_Ma, m)?)?;
     m.add_function(wrap_pyfunction!(Po_P_from_Ma, m)?)?;
     m.add_function(wrap_pyfunction!(rhoo_rho_from_Ma, m)?)?;
+    m.add_function(wrap_pyfunction!(V_cpTo_from_Ma, m)?)?;
+    m.add_function(wrap_pyfunction!(mcpTo_APo_from_Ma, m)?)?;
+    m.add_function(wrap_pyfunction!(mcpTo_AP_from_Ma, m)?)?;
     m.add_function(wrap_pyfunction!(A_Acrit_from_Ma, m)?)?;
+    m.add_function(wrap_pyfunction!(Mash_from_Ma, m)?)?;
+    m.add_function(wrap_pyfunction!(Posh_Po_from_Ma, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_Po_P, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_To_T, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_rhoo_rho, m)?)?;

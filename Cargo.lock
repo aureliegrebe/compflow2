@@ -26,8 +26,7 @@ checksum = "1fbdf580320f38b612e485521afda1ee26d10cc9884efaaa750d383e13e3c5f4"
 [[package]]
 name = "comp-flow"
 version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "46185f496cf83889001de7f4d309a962cfc08669d41d5a6a71b71678ce1fb41d"
+source = "git+https://github.com/aureliegrebe/comp-flow/?rev=6e5034c#6e5034c559794879fd7c9e00afc1848211490fef"
 dependencies = [
  "eqsolver",
  "num",
