@@ -27,10 +27,11 @@ maturin develop -r
 
 ## To Do
 
-[ ] Finish implementing inversion to Mach number
-[ ] Implement derivatives with respect to Mach number
-[ ] Implement lookup tables (maybe)
-[ ] Add parallel processing (maybe)
+- [x] Implement evaluations from Mach number
+- [ ] Finish implementing inversion to Mach number
+- [ ] Implement derivatives with respect to Mach number
+- [ ] Implement lookup tables (maybe)
+- [ ] Add parallel processing (maybe)
 
 
 
