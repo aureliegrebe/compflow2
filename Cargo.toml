@@ -12,4 +12,4 @@ crate-type = ["cdylib"]
 pyo3 = "0.26.0"
 numpy = "0.26"
 ndarray = "0.16.1"
-comp-flow = {git = "https://github.com/aureliegrebe/comp-flow/", rev = "6e5034c"}
+comp-flow = {git = "https://github.com/aureliegrebe/comp-flow/", rev = "f3e2052"}

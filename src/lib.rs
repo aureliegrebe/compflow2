@@ -143,6 +143,61 @@ fn Ma_from_rhoo_rho<'py>(
 }
 
 #[pyfunction]
+fn Ma_from_V_cpTo<'py>(
+    py: Python<'py>,
+    V_cpTo: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    V_cpTo
+        .as_array()
+        .map(|&r| mach_from_v_cpt0(r, ga))
+        .into_pyarray(py)
+}
+
+#[pyfunction]
+fn Ma_from_F_mcpTo<'py>(
+    py: Python<'py>,
+    F_mcpTo: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+    sup: Option<bool>,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    let supersonic: bool = match sup {
+        Some(x) => x,
+        None => false,
+    };
+    F_mcpTo
+        .as_array()
+        .map(|&r| mach_from_f_mcpt0(r, ga, supersonic))
+        .into_pyarray(py)
+}
+
+#[pyfunction]
+#[pyo3(signature = (mcpTo_APo, ga, sup=false, /))]
+fn Ma_from_mcpTo_APo<'py>(
+    py: Python<'py>,
+    mcpTo_APo: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+    sup: bool,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    mcpTo_APo
+        .as_array()
+        .map(|&r| mach_from_mcpt0_ap0(r, ga, sup))
+        .into_pyarray(py)
+}
+
+#[pyfunction]
+fn Ma_from_mcpTo_AP<'py>(
+    py: Python<'py>,
+    mcpTo_AP: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    mcpTo_AP
+        .as_array()
+        .map(|&r| mach_from_mcpt0_ap(r, ga))
+        .into_pyarray(py)
+}
+
+#[pyfunction]
 fn Ma_from_A_Acrit<'py>(
     py: Python<'py>,
     A_Acrit: PyReadonlyArrayDyn<f64>,
@@ -156,6 +211,29 @@ fn Ma_from_A_Acrit<'py>(
     A_Acrit
         .as_array()
         .map(|&r| mach_from_a_ac(r, ga, supersonic))
+        .into_pyarray(py)
+}
+
+#[pyfunction]
+fn Ma_from_Mash<'py>(
+    py: Python<'py>,
+    Mash: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    Mash.as_array()
+        .map(|&r| mach_from_normal_mach2(r, ga))
+        .into_pyarray(py)
+}
+
+#[pyfunction]
+fn Ma_from_Posh_Po<'py>(
+    py: Python<'py>,
+    Posh_Po: PyReadonlyArrayDyn<f64>,
+    ga: f64,
+) -> Bound<'py, PyArrayDyn<f64>> {
+    Posh_Po
+        .as_array()
+        .map(|&r| mach_from_normal_p02_p01(r, ga))
         .into_pyarray(py)
 }
 
@@ -174,6 +252,12 @@ fn compflow2(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(Ma_from_Po_P, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_To_T, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_rhoo_rho, m)?)?;
+    m.add_function(wrap_pyfunction!(Ma_from_V_cpTo, m)?)?;
+    m.add_function(wrap_pyfunction!(Ma_from_F_mcpTo, m)?)?;
+    // m.add_function(wrap_pyfunction!(Ma_from_mcpTo_APo, m)?)?;
+    // m.add_function(wrap_pyfunction!(Ma_from_mcpTo_AP, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_A_Acrit, m)?)?;
+    m.add_function(wrap_pyfunction!(Ma_from_Mash, m)?)?;
+    m.add_function(wrap_pyfunction!(Ma_from_Posh_Po, m)?)?;
     Ok(())
 }

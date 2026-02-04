@@ -26,7 +26,7 @@ checksum = "1fbdf580320f38b612e485521afda1ee26d10cc9884efaaa750d383e13e3c5f4"
 [[package]]
 name = "comp-flow"
 version = "0.1.2"
-source = "git+https://github.com/aureliegrebe/comp-flow/?rev=6e5034c#6e5034c559794879fd7c9e00afc1848211490fef"
+source = "git+https://github.com/aureliegrebe/comp-flow/?rev=f3e2052#f3e2052ba3517553c0fa28c314229d355b7ec57a"
 dependencies = [
  "eqsolver",
  "num",
