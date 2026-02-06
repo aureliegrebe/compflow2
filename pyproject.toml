@@ -4,12 +4,23 @@ build-backend = "maturin"
 
 [project]
 name = "compflow2"
+version = "0.0.1"
+authors = [
+    { name="Aurélie Grebe", email="aureliegrebe@gmail.com"}
+]
+description = "Compressible flow relations"
+readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Rust",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
 ]
-dynamic = ["version"]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+keywords=["compressible", "flow", "aerodynamics", "fluid", "engineering", "supersonic"]
+
 [tool.maturin]
 features = ["pyo3/extension-module"]
