@@ -98,12 +98,12 @@ if __name__ == "__main__":
     print("Benchmarking inversion...")
 
     # Initialise lookup table
-    cf.to_Ma("mcpTo_APo", 0.4, ga, use_lookup=True)
+    # cf.to_Ma("mcpTo_APo", 0.4, ga, use_lookup=True)
 
     # Loop over array sizes
     dt_cf2 = []
     dt_cf = []
-    dt_lookup = []
+    # dt_lookup = []
     for Ni in N:
 
         X = np.random.rand(Ni) * (Xmax - Xmin) + Xmin

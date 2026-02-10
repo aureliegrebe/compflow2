@@ -127,25 +127,25 @@ def main():
     plt.plot(rho0_rho, cf.Ma_from_rhoo_rho(rho0_rho, GAMMA), "g:", label="rho0/rho cf")
     plt.plot(v_cpt0, cf2.Ma_from_V_cpTo(v_cpt0, GAMMA), "r", label="V/cpT0 cf2")
     plt.plot(v_cpt0, cf.Ma_from_V_cpTo(v_cpt0, GAMMA), "r:", label="V/cpT0 cf")
-    # plt.plot(
-    #     mcpt0_ap0_sub,
-    #     cf2.Ma_from_mcpTo_APo(mcpt0_ap0_sub, GAMMA),
-    #     "m",
-    #     label="mcpTo_APo cf2",
-    # )
+    plt.plot(
+        mcpt0_ap0_sub,
+        cf2.Ma_from_mcpTo_APo(mcpt0_ap0_sub, GAMMA),
+        "m",
+        label="mcpTo_APo cf2",
+    )
     plt.plot(
         mcpt0_ap0_sub,
         cf.Ma_from_mcpTo_APo(mcpt0_ap0_sub, GAMMA),
         "m:",
         label="mcpTo_APo cf",
     )
-    # plt.plot(
-    #     mcpt0_ap,
-    #     cf2.Ma_from_mcpTo_AP(mcpt0_ap, GAMMA),
-    #     color="brown",
-    #     linestyle="-",
-    #     label="mcpTo_AP cf2",
-    # )
+    plt.plot(
+        mcpt0_ap,
+        cf2.Ma_from_mcpTo_AP(mcpt0_ap, GAMMA),
+        color="brown",
+        linestyle="-",
+        label="mcpTo_AP cf2",
+    )
     plt.plot(
         mcpt0_ap,
         cf.Ma_from_mcpTo_AP(mcpt0_ap, GAMMA),

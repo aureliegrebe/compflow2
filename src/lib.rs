@@ -254,8 +254,8 @@ fn compflow2(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(Ma_from_rhoo_rho, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_V_cpTo, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_F_mcpTo, m)?)?;
-    // m.add_function(wrap_pyfunction!(Ma_from_mcpTo_APo, m)?)?;
-    // m.add_function(wrap_pyfunction!(Ma_from_mcpTo_AP, m)?)?;
+    m.add_function(wrap_pyfunction!(Ma_from_mcpTo_APo, m)?)?;
+    m.add_function(wrap_pyfunction!(Ma_from_mcpTo_AP, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_A_Acrit, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_Mash, m)?)?;
     m.add_function(wrap_pyfunction!(Ma_from_Posh_Po, m)?)?;
